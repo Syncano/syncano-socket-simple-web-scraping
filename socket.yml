@@ -1,0 +1,55 @@
+name: simple-web-scraper
+description: Description of simple-web-scraper
+version: 0.0.1
+
+endpoints:
+  scraping:
+    description: Scrapes webpage and returns xpath or css selectors in xml or json format.
+    parameters:
+      url:
+        type: string
+        description: "Webpage address to scrape from"
+        example: "https://funnycatsgallery.com/'"
+      selectorType:
+        type: string
+        description: "Indicates the type of selector to use in scraping"
+        long_description: |
+          Contents can be scraped using either `xpath` or `css` selector.
+        example: "xpath"
+      extract:
+        type: string
+        description: "Scraped Data readable format to return."
+        long_description: |
+          Data can be returned either in `json` or `xml` format.
+        example: "json"
+      config:
+        type: object
+        description: "Parameter for selecting the content you want to scrape."
+        example: |
+          {
+            "config":
+              {
+              "title": "//*[@id='content_box']/article/header/h2/a/text()"
+              }
+          }
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+            "message": "Webpage Scraped.",
+            "statusCode": 200,
+            "data": { title:[]}
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "message": "Make sure to use GET request method for scraping webpage",
+              "statusCode": 400,
+              "data": {}
+            }

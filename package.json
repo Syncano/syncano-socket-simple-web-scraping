@@ -1,0 +1,36 @@
+{
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "cheerio": "^1.0.0-rc.2",
+    "data2xml": "^1.2.5",
+    "easyxml": "^2.0.1",
+    "install": "^0.10.4",
+    "npm": "^5.6.0",
+    "openscraping": "git+https://git@github.com/Andela-callen/openscraping-lib-nodejs.git",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "syncano-server": "beta",
+    "syncano-test": "^0.3.3",
+    "xml": "^1.0.1",
+    "xml-js": "^1.6.2"
+  },
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register test/*.js --timeout 15000"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai-xml": "^0.3.1",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-chai-friendly": "^0.4.0",
+    "eslint-plugin-import": "^2.8.0",
+    "mocha": "^4.0.1",
+    "syncano-socket-readme-generator": "^1.0.0"
+  }
+}
