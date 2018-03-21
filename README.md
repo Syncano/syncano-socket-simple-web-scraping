@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Syncano/syncano-socket-simple-web-scraping/tree/develop.svg?style=svg)](https://circleci.com/gh/Syncano/syncano-socket-simple-web-scraping/tree/develop)
+
 # simple-web-scraper
 
 `version:` **0.0.1**
@@ -21,7 +23,7 @@ Scrapes webpage and returns xpath or css selectors in xml or json format.
 | name | type | description | example | long_description
 | ---- | ---- | ----------- | ------- | ----------------
 | url | string | Webpage address to scrape from | https://funnycatsgallery.com/' | 
-| selectorType | string | Indicates the type of selector to use in scraing | xpath | Contents can be scraped using either `xpath` or `css` selector. 
+| selectorType | string | Indicates the type of selector to use in scraping | xpath | Contents can be scraped using either `xpath` or `css` selector. 
 | extract | string | Scraped Data readable format to return. | json | Data can be returned either in `json` or `xml` format. 
 | config | object | Parameter for selecting the content you want to scrape. | {   "config":     {     "title": "//*[@id='content_box']/article/header/h2/a/text()"     } }  | 
 

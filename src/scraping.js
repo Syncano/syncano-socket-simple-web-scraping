@@ -1,7 +1,6 @@
 import Syncano from 'syncano-server';
+import rp from 'request-promise';
 import scraping from './utility';
-
-const rp = require('request-promise');
 
 export default async (ctx) => {
   const { response } = Syncano(ctx);
@@ -11,18 +10,22 @@ export default async (ctx) => {
     url,
     extract,
     selectorType,
-    ...config
+    config
   } = ctx.args;
 
   try {
-    if (requestMethod === 'GET') {
+    if (requestMethod === 'POST') {
       const options = {
         uri: url,
-        transform: (html => scraping(selectorType, config, extract, html))
+        transform: (async (html) => {
+          const result = await scraping(selectorType, config, extract, html);
+          return result;
+        })
       };
 
       return rp(options)
         .then((data) => {
+          // console.log(data)
           response.json({
             message: 'Webpage Scraped.',
             statusCode: 200,

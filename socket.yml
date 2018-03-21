@@ -1,5 +1,5 @@
 name: simple-web-scraper
-description: Description of simple-web-scraper
+description: Simple web scraper for extracting data from websites.
 version: 0.0.1
 
 endpoints:
@@ -9,7 +9,7 @@ endpoints:
       url:
         type: string
         description: "Webpage address to scrape from"
-        example: "https://funnycatsgallery.com/'"
+        example: "https://funnycatsgallery.com/"
       selectorType:
         type: string
         description: "Indicates the type of selector to use in scraping"
