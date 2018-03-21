@@ -1,9 +1,9 @@
-import Syncano from 'syncano-server';
+import Syncano from '@syncano/core';
 import rp from 'request-promise';
 import scraping from './utility';
 
 export default async (ctx) => {
-  const { response } = Syncano(ctx);
+  const { response } = new Syncano(ctx);
   const requestMethod = ctx.meta.request.REQUEST_METHOD;
 
   const {
@@ -25,7 +25,6 @@ export default async (ctx) => {
 
       return rp(options)
         .then((data) => {
-          // console.log(data)
           response.json({
             message: 'Webpage Scraped.',
             statusCode: 200,
@@ -38,7 +37,7 @@ export default async (ctx) => {
     } throw new Error('not available');
   } catch (error) {
     response.json({
-      message: 'Make sure to use GET request method for scraping webpage',
+      message: 'Make sure to use POST request method for scraping webpage',
       statusCode: 400,
       data: error
     });

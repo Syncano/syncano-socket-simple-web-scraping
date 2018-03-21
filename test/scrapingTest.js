@@ -1,5 +1,5 @@
 import { assert, expect } from 'chai';
-import { run, generateMeta } from 'syncano-test';
+import { run, generateMeta } from '@syncano/test';
 
 const meta = generateMeta('scraping');
 let args = {};
@@ -15,7 +15,7 @@ describe('WEBPAGE SCRAPING WITH XPATH AND CSS SELECTORS', () => {
       run('scraping', { meta, args })
         .then((response) => {
           expect(response.data.message)
-            .to.equal('Make sure to use GET request method for scraping webpage');
+            .to.equal('Make sure to use POST request method for scraping webpage');
           done();
         });
     });

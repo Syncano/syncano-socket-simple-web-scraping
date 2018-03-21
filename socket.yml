@@ -1,55 +1,76 @@
 name: simple-web-scraper
 description: Simple web scraper for extracting data from websites.
 version: 0.0.1
+runtime: nodejs_v8
+keywords:
+  - simple web scraping
+  - xpath
+  - css
+  - json
+  - xml
 
 endpoints:
   scraping:
     description: Scrapes webpage and returns xpath or css selectors in xml or json format.
-    parameters:
-      url:
-        type: string
-        description: "Webpage address to scrape from"
-        example: "https://funnycatsgallery.com/"
-      selectorType:
-        type: string
-        description: "Indicates the type of selector to use in scraping"
-        long_description: |
-          Contents can be scraped using either `xpath` or `css` selector.
-        example: "xpath"
-      extract:
-        type: string
-        description: "Scraped Data readable format to return."
-        long_description: |
-          Data can be returned either in `json` or `xml` format.
-        example: "json"
-      config:
-        type: object
-        description: "Parameter for selecting the content you want to scrape."
-        example: |
-          {
-            "config":
+    inputs:
+      properties:
+        url:
+          type: string
+          description: "Webpage address to scrape from"
+          examples: 
+            - "https://funnycatsgallery.com/"
+        selectorType:
+          type: string
+          description: "Indicates the type of selector to use in scraping"
+          long_description: |
+            Contents can be scraped using either `xpath` or `css` selector.
+          examples: 
+            - "xpath"
+        extract:
+          type: string
+          description: "Scraped Data readable format to return."
+          long_description: |
+            Data can be returned either in `json` or `xml` format.
+          examples: 
+            - "json"
+        config:
+          type: object
+          description: "Parameter for selecting the content you want to scrape."
+          examples:
+            - |
               {
-              "title": "//*[@id='content_box']/article/header/h2/a/text()"
+                "config":
+                  {
+                  "title": "//*[@id='content_box']/article/header/h2/a/text()"
+                  }
               }
-          }
-    response:
-      mimetype: application/json
-      examples:
-        -
-          exit_code: 200
-          description: Success
-          example: |
-            {
-            "message": "Webpage Scraped.",
-            "statusCode": 200,
-            "data": { title:[]}
-            }
-        -
-          exit_code: 400
-          description: Failed
-          example: |
-            {
-              "message": "Make sure to use GET request method for scraping webpage",
-              "statusCode": 400,
-              "data": {}
-            }
+    outputs:
+      success:
+        description: Success
+        required:
+          - message
+        properties:
+          message:
+            description: Scraping success data
+            examples:
+              - |
+                {
+                "message": "Webpage Scraped.",
+                "statusCode": 200,
+                "data": { title:[]}
+                }
+      fail:
+        exit_code: 400
+        description: Failed
+        required:
+          - message
+        properties:
+          message:
+            description: Error message
+            examples:
+              - |
+                {
+                "message": "Make sure to use GET request method for scraping webpage",
+                "statusCode": 400,
+                "data": {}
+                }
