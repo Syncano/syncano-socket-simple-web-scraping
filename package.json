@@ -9,7 +9,8 @@
     "easyxml": "^2.0.1",
     "openscraping": "git+https://git@github.com/Andela-callen/openscraping-lib-nodejs.git",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "string": "^3.3.3"
   },
   "scripts": {
     "build": "npm run build:src && npm run build:env",

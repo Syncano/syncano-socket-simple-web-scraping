@@ -1,6 +1,6 @@
 name: simple-web-scraper
 description: Simple web scraper for extracting data from websites.
-version: 0.0.1
+version: 0.0.3
 runtime: nodejs_v8
 keywords:
   - simple web scraping

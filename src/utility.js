@@ -2,6 +2,7 @@ import cheerio from 'cheerio';
 import request from 'request';
 import openScraping from 'openscraping';
 import EasyXml from 'easyxml';
+import S from 'string';
 
 const report = (extract, scraped) => {
   return new Promise((resolve, reject) => {
@@ -9,7 +10,6 @@ const report = (extract, scraped) => {
       const serializer = new EasyXml({
         singularize: true,
         rootElement: 'response',
-        dateFormat: 'ISO',
         manifest: true
       });
       resolve(serializer.render(scraped));
@@ -26,10 +26,10 @@ const scraping = (selectorType, config, extract, html) => new Promise((resolve, 
   } if (selectorType === 'css') {
     try {
       const $ = cheerio.load(html);
-      Promise.all(Object.keys(config).map(async (key) => {
+      Promise.all(Object.keys(config).map((key) => {
         const decodedCss = [];
-        await $(config[key]).each((i, cssValue) => {
-          decodedCss[i] = `${$(cssValue).html()}`;
+        $(config[key]).each((i, cssValue) => {
+          decodedCss[i] = `${S($(cssValue).html()).unescapeHTML().s}`;
         });
         config[key] = $(config[key]).text() === '' ?
           `${config[key]} does not exist` :

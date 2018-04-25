@@ -53,9 +53,15 @@ jobs:
     steps:
       - restore_cache:
           key: v6-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run: npm install @syncano/cli@canary --save
-      - run: npx s submit ${SOCKET_NAME} -b patch
-      - run: npx s publish ${SOCKET_NAME}
+      - add_ssh_keys:
+          fingerprints:
+            - "64:3b:ad:6a:56:9b:36:99:1e:b0:ff:5a:27:7e:41:81"
+      - run: sudo npm install @syncano/cli -g
+      - run: SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY SYNCANO_HOST=api.syncano.io npx s submit ${SOCKET_NAME} -b patch
+      - run: SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY SYNCANO_HOST=api.syncano.io npx s publish ${SOCKET_NAME}
+      - run:
+          name: Avoid hosts unknown for github
+          command: mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: git config --global user.email $GITHUB_EMAIL && git config --global user.name $GITHUB_NAME
       - run: git commit -a -m "Bumping version [ci skip]" && git push origin $CIRCLE_BRANCH
 
