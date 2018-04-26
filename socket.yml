@@ -1,6 +1,6 @@
 name: simple-web-scraper
 description: Simple web scraper for extracting data from websites.
-version: 0.0.3
+version: 0.0.4
 runtime: nodejs_v8
 keywords:
   - simple web scraping
@@ -8,7 +8,6 @@ keywords:
   - css
   - json
   - xml
-
 endpoints:
   scraping:
     description: Scrapes webpage and returns xpath or css selectors in xml or json format.
@@ -16,26 +15,26 @@ endpoints:
       properties:
         url:
           type: string
-          description: "Webpage address to scrape from"
-          examples: 
-            - "https://funnycatsgallery.com/"
+          description: Webpage address to scrape from
+          examples:
+            - 'https://funnycatsgallery.com/'
         selectorType:
           type: string
-          description: "Indicates the type of selector to use in scraping"
+          description: Indicates the type of selector to use in scraping
           long_description: |
             Contents can be scraped using either `xpath` or `css` selector.
-          examples: 
-            - "xpath"
+          examples:
+            - xpath
         extract:
           type: string
-          description: "Scraped Data readable format to return."
+          description: Scraped Data readable format to return.
           long_description: |
             Data can be returned either in `json` or `xml` format.
-          examples: 
-            - "json"
+          examples:
+            - json
         config:
           type: object
-          description: "Parameter for selecting the content you want to scrape."
+          description: Parameter for selecting the content you want to scrape.
           examples:
             - |
               {
@@ -68,9 +67,14 @@ endpoints:
           message:
             description: Error message
             examples:
-              - |
+              - >
                 {
-                "message": "Make sure to use GET request method for scraping webpage",
+
+                "message": "Make sure to use GET request method for scraping
+                webpage",
+
                 "statusCode": 400,
+
                 "data": {}
+
                 }
